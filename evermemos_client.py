@@ -133,8 +133,9 @@ class EverMemOSClient:
             "role": role,
             "type": "text",
             "scene": scene,
-            "flush": flush,
         }
+        if flush:
+            payload["flush"] = True
 
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             resp = await client.post(
